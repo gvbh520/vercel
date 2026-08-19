@@ -1,722 +1,892 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Fin del Apartheid — Sudáfrica Libre</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #1a1008;
+    --deep: #2b1a0e;
+    --gold: #c8922a;
+    --gold-light: #e8b84b;
+    --green: #1e6b3c;
+    --green-light: #2a9455;
+    --red: #c0392b;
+    --cream: #f5f0e8;
+    --cream-dark: #ece4d3;
+    --text: #2b1a0e;
+    --text-muted: #6b5540;
+    --white: #fefcf8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    background: linear-gradient(180deg, #0a0603 0%, #1a0f07 40%, #2b1a0e 100%);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 30%, rgba(200,146,42,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 80% 60% at 50% 80%, rgba(30,107,60,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .flag-stripe {
+    display: flex;
+    width: 100%;
+    height: 6px;
+    position: absolute;
+    top: 0;
+  }
+  .flag-stripe span { flex: 1; }
+  .s1 { background: #007A4D; }
+  .s2 { background: #FFB81C; }
+  .s3 { background: #DE3831; }
+  .s4 { background: #002395; }
+  .s5 { background: #fff; }
+  .s6 { background: #007A4D; }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+
+  .hero-date {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 12vw, 9rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-date span {
+    color: var(--gold-light);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 4vw, 2.6rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--cream);
+    margin-top: 1rem;
+    max-width: 700px;
+    opacity: 0.9;
+    line-height: 1.3;
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.45);
+    margin-top: 2rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.4;
+  }
+  .scroll-hint span { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 5rem 2rem; }
+
+  .container { max-width: 860px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    color: rgba(255,255,255,0.72);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem 0;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(200,146,42,0.25);
+  }
+  .divider-icon { color: var(--gold); font-size: 1rem; opacity: 0.6; }
+
+  /* ─── INTRO QUOTE ─── */
+  .intro-bg { background: #110b05; }
+
+  blockquote {
+    border-left: 3px solid var(--gold);
+    padding: 1.5rem 2rem;
+    margin: 2.5rem 0;
+    background: rgba(200,146,42,0.06);
+    border-radius: 0 8px 8px 0;
+  }
+  blockquote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+  blockquote cite {
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  /* ─── TIMELINE ─── */
+  .timeline-bg { background: #0e0904; }
+
+  .timeline {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-top: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--gold) 0%, rgba(200,146,42,0.1) 100%);
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 3rem;
+  }
+
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -2.85rem;
+    top: 0.35rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--black);
+    box-shadow: 0 0 0 3px rgba(200,146,42,0.2);
+  }
+
+  .tl-year {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .tl-item h3 { margin-bottom: 0.4rem; font-size: 1.1rem; }
+  .tl-item p { margin-bottom: 0; font-size: 0.92rem; }
+
+  /* ─── FIGURES ─── */
+  .figures-bg { background: #0b0703; }
+
+  .figures-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .figure-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(200,146,42,0.15);
+    border-radius: 12px;
+    padding: 1.75rem 1.5rem;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .figure-card:hover {
+    border-color: rgba(200,146,42,0.35);
+    background: rgba(200,146,42,0.07);
+  }
+
+  .figure-initial {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
+  }
+  .fig-green { background: rgba(30,107,60,0.35); color: #6fd99a; border: 1px solid rgba(30,107,60,0.4); }
+  .fig-gold  { background: rgba(200,146,42,0.3); color: var(--gold-light); border: 1px solid rgba(200,146,42,0.4); }
+  .fig-blue  { background: rgba(30,80,150,0.35); color: #7db3f7; border: 1px solid rgba(30,80,150,0.4); }
+  .fig-red   { background: rgba(192,57,43,0.3); color: #f4927d; border: 1px solid rgba(192,57,43,0.4); }
+
+  .figure-card h3 { font-size: 1.05rem; margin-bottom: 0.2rem; }
+  .figure-role { font-size: 0.75rem; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .figure-card p { font-size: 0.88rem; line-height: 1.65; margin-bottom: 0; }
+
+  /* ─── LAWS ─── */
+  .laws-bg { background: #110b05; }
+
+  .laws-list {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .law-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.25rem 1.5rem;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .law-year {
+    min-width: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    padding-top: 2px;
+  }
+
+  .law-name {
+    font-weight: 500;
+    color: var(--cream);
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .law-desc { font-size: 0.85rem; line-height: 1.6; color: rgba(255,255,255,0.5); margin: 0; }
+
+  /* ─── TRANSITION ─── */
+  .transition-bg { background: #0a0702; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+    align-items: start;
+  }
+
+  @media (max-width: 640px) {
+    .two-col { grid-template-columns: 1fr; gap: 2rem; }
+    .figures-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── STATS ─── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    margin: 3rem 0;
+    background: rgba(200,146,42,0.12);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .stat-box {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    background: #0e0904;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.4;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── ELECTION ─── */
+  .election-bg { background: #0c0805; }
+
+  .vote-bars { margin-top: 2rem; }
+  .vote-row { margin-bottom: 1.25rem; }
+  .vote-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; }
+  .vote-party { font-size: 0.85rem; color: var(--cream); font-weight: 500; }
+  .vote-pct { font-size: 0.85rem; color: var(--gold); font-weight: 600; }
+  .vote-bar-bg { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+  .vote-bar-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
+  .bar-anc  { background: #007A4D; width: 62.65%; }
+  .bar-np   { background: #0032A0; width: 20.39%; }
+  .bar-ifp  { background: #FFB81C; width: 10.54%; }
+  .bar-ff   { background: #FF6600; width: 2.17%; }
+  .bar-other{ background: rgba(255,255,255,0.25); width: 4.25%; }
+
+  /* ─── LEGACY ─── */
+  .legacy-bg { background: #0e0904; }
+
+  .legacy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .legacy-card {
+    padding: 1.5rem 1.25rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.03);
+  }
+
+  .legacy-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .legacy-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--cream); margin-bottom: 0.4rem; letter-spacing: 0.02em; }
+  .legacy-card p { font-size: 0.82rem; margin: 0; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  /* ─── FINAL QUOTE ─── */
+  .final-bg {
+    background: #080502;
+    padding: 7rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,146,42,0.07) 0%, transparent 70%);
+  }
+
+  .final-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+    font-style: italic;
+    color: var(--cream);
+    max-width: 680px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.4;
+    position: relative;
+    z-index: 1;
+  }
+
+  .final-attr {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── FLAG BAR BOTTOM ─── */
+  .flag-bar-bottom {
+    display: flex;
+    height: 8px;
+  }
+  .flag-bar-bottom span { flex: 1; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #030201;
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+  footer p { font-size: 0.75rem; color: rgba(255,255,255,0.2); margin: 0; }
+  footer strong { color: rgba(255,255,255,0.35); }
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="flag-stripe">
+    <span class="s1"></span><span class="s2"></span><span class="s3"></span>
+    <span class="s4"></span><span class="s5"></span><span class="s6"></span>
+  </div>
+
+  <span class="hero-eyebrow">Conmemoración histórica · Sudáfrica</span>
+  <div class="hero-date"><span>27</span> ABR<br><span>1994</span></div>
+  <h1 class="hero-title">El día que Sudáfrica eligió la libertad sobre el miedo</h1>
+  <p class="hero-sub">El fin del apartheid · La primera elección democrática</p>
+
+  <div class="scroll-hint">
+    <span>Explorar</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══ INTRODUCCIÓN ═══ -->
+<section class="intro-bg">
+  <div class="container">
+    <span class="section-label">¿Qué fue el apartheid?</span>
+    <h2>Un sistema de opresión construido por ley</h2>
+    <p>
+      El apartheid —palabra afrikáans que significa "separación"— fue el régimen de segregación racial institucionalizada que gobernó Sudáfrica desde 1948 hasta 1994. Bajo este sistema, la minoría blanca mantuvo el control absoluto del poder político, económico y social, mientras que la población negra, mestiza e india era sistemáticamente excluida de los derechos más básicos: votar, circular libremente, recibir educación de calidad o vivir donde eligiera.
+    </p>
+    <p>
+      No fue una discriminación informal: fue una arquitectura legal deliberada, construida con cientos de leyes que regulaban cada aspecto de la existencia cotidiana. Fue también, para el mundo, una de las formas más vergonzosas de tiranía institucionalizada del siglo XX.
+    </p>
+
+    <blockquote>
+      <p>"Siempre parece imposible hasta que se hace."</p>
+      <cite>— Nelson Mandela</cite>
+    </blockquote>
+
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-number">46</div>
+        <div class="stat-label">Años de lucha<br>organizada (1948–1994)</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">3,5M</div>
+        <div class="stat-label">Personas desplazadas<br>forzosamente</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">27</div>
+        <div class="stat-label">Años de prisión<br>de Nelson Mandela</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">19M</div>
+        <div class="stat-label">Votantes en la primera<br>elección libre, 1994</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CRONOLOGÍA ═══ -->
+<section class="timeline-bg">
+  <div class="container">
+    <span class="section-label">Cronología</span>
+    <h2>Del régimen a la libertad: los momentos decisivos</h2>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">1948</div>
+        <h3>El Partido Nacional llega al poder</h3>
+        <p>Con su victoria electoral, el Partido Nacional (afrikáner) instaura oficialmente el apartheid como política de Estado. Comienza la promulgación sistemática de leyes raciales que lo consolidarán durante décadas.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">1950</div>
+        <h3>La Ley de Registro de Población</h3>
+        <p>Todo sudafricano es clasificado obligatoriamente en una de cuatro categorías raciales: blanco, indio, mestizo (coloured) o nativo (bantú). La raza determina desde ese momento cada derecho y cada límite de la vida de una persona.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">1955</div>
+        <h3>La Carta de la Libertad</h3>
+        <p>El Congreso Nacional Africano (ANC) y otras organizaciones adoptan la Carta de la Libertad en Kliptown, proclamando que "Sudáfrica pertenece a todos los que viven en ella, negros y blancos". Se convierte en el documento fundacional de la lucha antiapartheid.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">1960</div>
+        <h3>La masacre de Sharpeville</h3>
+        <p>El 21 de marzo, la policía abre fuego contra manifestantes negros que protestan pacíficamente contra las leyes de pases en Sharpeville. Mueren 69 personas. La masacre sacude la conciencia mundial y acelera el aislamiento internacional del régimen.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">1964</div>
+        <h3>Mandela condenado a cadena perpetua</h3>
+        <p>Nelson Mandela, líder del ANC, es condenado a prisión perpetua en el Proceso Rivonia. Es enviado a la prisión de Robben Island, donde permanecerá 18 de sus 27 años de encarcelamiento. Su celda se convierte en símbolo de la resistencia.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">1976</div>
+        <h3>El levantamiento de Soweto</h3>
+        <p>El 16 de junio, estudiantes negros de Soweto marchan contra la imposición del afrikáans como lengua de instrucción. La policía responde con balas. Más de 170 jóvenes mueren. La imagen de Hector Pieterson, de 12 años, herido mortalmente, recorre el mundo.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">1985–89</div>
+        <h3>Estado de emergencia y presión internacional</h3>
+        <p>El gobierno impone el estado de emergencia ante el crecimiento de la resistencia interna. Las sanciones económicas internacionales —lideradas por Estados Unidos, Europa y organizaciones como el movimiento de desinversión— comienzan a asfixiar la economía sudafricana.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">1990</div>
+        <h3>Liberación de Mandela y legalización del ANC</h3>
+        <p>El 11 de febrero, el presidente F. W. de Klerk anuncia la liberación de Nelson Mandela y la legalización del ANC y otras organizaciones políticas. Mandela sale de prisión tras 27 años. Comienzan las negociaciones para desmantelar el apartheid.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">1993</div>
+        <h3>Premio Nobel de la Paz compartido</h3>
+        <p>Nelson Mandela y F. W. de Klerk reciben juntos el Premio Nobel de la Paz por sus esfuerzos en la transición pacífica hacia la democracia. El mundo reconoce el proceso histórico en marcha en Sudáfrica.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">27 ABR 1994</div>
+        <h3>Las primeras elecciones democráticas</h3>
+        <p>Por primera vez en la historia, todos los ciudadanos sudafricanos, sin distinción de raza, pueden votar. Millones de personas hacen largas colas durante horas para ejercer su derecho al sufragio. El ANC obtiene el 62,65 % de los votos. Sudáfrica nace como democracia.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">10 MAY 1994</div>
+        <h3>Inauguración de Nelson Mandela como presidente</h3>
+        <p>Nelson Mandela jura el cargo como primer presidente negro y democráticamente elegido de Sudáfrica. En su discurso de toma de posesión, proclama: "Nunca, nunca más volverá este hermoso país a experimentar la opresión de unos por otros." Nace la "Nación Arcoíris".</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FIGURAS ═══ -->
+<section class="figures-bg">
+  <div class="container">
+    <span class="section-label">Protagonistas de la historia</span>
+    <h2>Las voces que cambiaron Sudáfrica</h2>
+
+    <div class="figures-grid">
+      <div class="figure-card">
+        <div class="figure-initial fig-green">NM</div>
+        <h3>Nelson Mandela</h3>
+        <p class="figure-role">Líder del ANC · Primer presidente democrático</p>
+        <p>Abogado, activista y símbolo global de la resistencia no violenta. Pasó 27 años en prisión sin renunciar a sus principios. Al ser liberado, eligió el diálogo sobre la venganza, guiando a Sudáfrica hacia la reconciliación.</p>
+      </div>
+
+      <div class="figure-card">
+        <div class="figure-initial fig-gold">DT</div>
+        <h3>Desmond Tutu</h3>
+        <p class="figure-role">Arzobispo de Ciudad del Cabo · Premio Nobel 1984</p>
+        <p>Voz moral del movimiento antiapartheid desde dentro del país. Usó su posición eclesial para denunciar las injusticias ante el mundo y fue figura clave de la Comisión de la Verdad y la Reconciliación tras el fin del régimen.</p>
+      </div>
+
+      <div class="figure-card">
+        <div class="figure-initial fig-blue">OR</div>
+        <h3>Oliver Tambo</h3>
+        <p class="figure-role">Presidente del ANC en el exilio</p>
+        <p>Durante tres décadas dirigió el ANC desde el exterior, construyendo alianzas internacionales y manteniendo viva la causa. Su diplomacia fue esencial para lograr las sanciones globales que presionaron al régimen.</p>
+      </div>
+
+      <div class="figure-card">
+        <div class="figure-initial fig-red">SM</div>
+        <h3>Steve Biko</h3>
+        <p class="figure-role">Líder del movimiento de conciencia negra</p>
+        <p>Fundador de la Conciencia Negra, Biko defendió el orgullo y la dignidad de la identidad africana. Murió en custodia policial en 1977 a los 30 años, convirtiéndose en mártir de la lucha por la libertad.</p>
+      </div>
+
+      <div class="figure-card">
+        <div class="figure-initial fig-green">WS</div>
+        <h3>Walter Sisulu</h3>
+        <p class="figure-role">Secretario general del ANC</p>
+        <p>Mentor y amigo de Mandela, Sisulu fue uno de los arquitectos intelectuales del ANC moderno. Pasó 26 años en prisión junto a Mandela y, tras su liberación en 1989, contribuyó activamente a la transición democrática.</p>
+      </div>
+
+      <div class="figure-card">
+        <div class="figure-initial fig-gold">FW</div>
+        <h3>F. W. de Klerk</h3>
+        <p class="figure-role">Último presidente del apartheid</p>
+        <p>Aunque representaba el sistema que debía desmantelarse, De Klerk tomó la decisión histórica de liberar a Mandela y negociar el fin del apartheid. Su papel en la transición pacífica le valió el Premio Nobel compartido en 1993.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LEYES ═══ -->
+<section class="laws-bg">
+  <div class="container">
+    <span class="section-label">Instrumentos de la opresión</span>
+    <h2>Las leyes que construyeron el apartheid</h2>
+    <p>El apartheid no fue solo discriminación: fue una ingeniería legal meticulosa. Estas son algunas de las normas que estructuraron el sistema de dominación racial.</p>
+
+    <div class="laws-list">
+      <div class="law-item">
+        <div class="law-year">1949</div>
+        <div>
+          <div class="law-name">Ley de Prohibición de Matrimonios Mixtos</div>
+          <p class="law-desc">Ilegalizó los matrimonios entre personas blancas y de cualquier otra raza, criminalizando las relaciones afectivas interraciales.</p>
         </div>
-    </header>
+      </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+      <div class="law-item">
+        <div class="law-year">1950</div>
+        <div>
+          <div class="law-name">Ley de Inmoralidad (enmienda)</div>
+          <p class="law-desc">Extendió la prohibición de las relaciones sexuales interraciales. La policía irrumpía en hogares para detener a parejas de distintas razas.</p>
         </div>
-    </section>
+      </div>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
+      <div class="law-item">
+        <div class="law-year">1950</div>
+        <div>
+          <div class="law-name">Ley de Áreas de Grupo</div>
+          <p class="law-desc">Designó zonas residenciales segregadas según la raza. Millones de personas fueron expulsadas de sus hogares y reubicadas forzosamente en townships.</p>
         </div>
-    </section>
+      </div>
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
+      <div class="law-item">
+        <div class="law-year">1952</div>
+        <div>
+          <div class="law-name">Ley de Pases (Pass Laws)</div>
+          <p class="law-desc">Obligó a los negros a portar en todo momento un "libro de referencia" (dompas) que regulaba dónde podían vivir y trabajar. Millones fueron arrestados por infracciones.</p>
         </div>
-    </section>
+      </div>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
+      <div class="law-item">
+        <div class="law-year">1953</div>
+        <div>
+          <div class="law-name">Ley de Educación Bantú</div>
+          <p class="law-desc">Diseñó un sistema educativo de calidad deliberadamente inferior para los estudiantes negros, con el objetivo declarado de prepararlos solo para trabajos manuales.</p>
         </div>
-    </section>
+      </div>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
+      <div class="law-item">
+        <div class="law-year">1960</div>
+        <div>
+          <div class="law-name">Prohibición del ANC y el PAC</div>
+          <p class="law-desc">Tras Sharpeville, el gobierno ilegalizó los principales partidos de oposición negros, empujando la resistencia a la clandestinidad y al exilio.</p>
         </div>
-    </footer>
+      </div>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
+      <div class="law-item">
+        <div class="law-year">1970</div>
+        <div>
+          <div class="law-name">Ley de Ciudadanía de los Bantustanes</div>
+          <p class="law-desc">Privó a la población negra de su ciudadanía sudafricana, relegándola a territorios ficticios ("homelands") con el fin de eliminarla legalmente del estado sudafricano.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
+<!-- ═══ ELECCIONES 1994 ═══ -->
+<section class="election-bg">
+  <div class="container">
+    <span class="section-label">27 de abril de 1994</span>
+    <h2>La votación que lo cambió todo</h2>
 
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
+    <div class="two-col">
+      <div>
+        <p>Durante cuatro días, del 26 al 29 de abril de 1994, más de 19 millones de sudafricanos acudieron por primera vez en su vida a las urnas. Las colas se extendían durante kilómetros. Personas mayores que nunca habían votado lloraban al marcar su papeleta. Fue descrito como el nacimiento de una nación.</p>
+        <p>Los observadores internacionales calificaron la jornada de "milagro". La ONU y decenas de países enviaron delegaciones para atestiguar el momento. El resultado fue claro: el ANC obtuvo una mayoría aplastante.</p>
+      </div>
+      <div class="vote-bars">
+        <div class="vote-row">
+          <div class="vote-header">
+            <span class="vote-party">Congreso Nacional Africano (ANC)</span>
+            <span class="vote-pct">62,65 %</span>
+          </div>
+          <div class="vote-bar-bg"><div class="vote-bar-fill bar-anc"></div></div>
+        </div>
+        <div class="vote-row">
+          <div class="vote-header">
+            <span class="vote-party">Partido Nacional (NP)</span>
+            <span class="vote-pct">20,39 %</span>
+          </div>
+          <div class="vote-bar-bg"><div class="vote-bar-fill bar-np"></div></div>
+        </div>
+        <div class="vote-row">
+          <div class="vote-header">
+            <span class="vote-party">Libertad del Inkatha (IFP)</span>
+            <span class="vote-pct">10,54 %</span>
+          </div>
+          <div class="vote-bar-bg"><div class="vote-bar-fill bar-ifp"></div></div>
+        </div>
+        <div class="vote-row">
+          <div class="vote-header">
+            <span class="vote-party">Frente de la Libertad (FF)</span>
+            <span class="vote-pct">2,17 %</span>
+          </div>
+          <div class="vote-bar-bg"><div class="vote-bar-fill bar-ff"></div></div>
+        </div>
+        <div class="vote-row">
+          <div class="vote-header">
+            <span class="vote-party">Otros partidos</span>
+            <span class="vote-pct">4,25 %</span>
+          </div>
+          <div class="vote-bar-bg"><div class="vote-bar-fill bar-other"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-    </script>
+<!-- ═══ TRANSICIÓN ═══ -->
+<section class="transition-bg">
+  <div class="container">
+    <span class="section-label">El camino hacia la paz</span>
+    <h2>Reconciliación: el milagro sudafricano</h2>
+
+    <div class="two-col">
+      <div>
+        <h3>La Comisión de la Verdad y la Reconciliación</h3>
+        <p>En lugar de tribunales penales masivos, Sudáfrica eligió un camino inédito: la CVR, presidida por el arzobispo Desmond Tutu. Víctimas y perpetradores podían testificar públicamente. A cambio de confesar la verdad completa, los autores de violaciones de derechos humanos podían solicitar amnistía.</p>
+        <p>Fue un proceso doloroso, imperfecto y extraordinario. Dio voz a quienes habían sufrido en silencio y confrontó al país con su propia historia. No curó todas las heridas, pero sentó las bases para una convivencia posible.</p>
+      </div>
+      <div>
+        <h3>La Nación Arcoíris</h3>
+        <p>El arzobispo Tutu acuñó el término "Nación Arcoíris" para describir la nueva Sudáfrica: una sociedad donde personas de todos los orígenes y colores construirían un país común. La nueva bandera —verde, negro, oro, rojo, blanco y azul— simbolizaba esa convergencia de caminos.</p>
+        <p>La nueva constitución de 1996, considerada una de las más progresistas del mundo, consagró los derechos de todos los ciudadanos sin distinción de raza, género u orientación sexual. Fue el documento jurídico de ese arcoíris.</p>
+      </div>
+    </div>
+
+    <div class="divider"><span class="divider-icon">◆</span></div>
+
+    <blockquote>
+      <p>"Si hay un país que ha pasado por el infierno y lo ha sobrevivido, es Sudáfrica. Si hay una lección que el mundo puede aprender, es que la dignidad humana siempre puede prevalecer."</p>
+      <cite>— Desmond Tutu, 1999</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ═══ LEGADO ═══ -->
+<section class="legacy-bg">
+  <div class="container">
+    <span class="section-label">Hoy y mañana</span>
+    <h2>El legado del fin del apartheid en el mundo</h2>
+    <p>La caída del apartheid no fue solo la liberación de un pueblo: fue una lección para la humanidad entera sobre lo que es posible cuando la dignidad humana se pone por encima del miedo y el odio.</p>
+
+    <div class="legacy-grid">
+      <div class="legacy-card">
+        <div class="legacy-icon">📜</div>
+        <h4>Derecho internacional</h4>
+        <p>El apartheid fue declarado crimen de lesa humanidad por la ONU. Su condena reforzó las normas internacionales contra la discriminación racial institucionalizada.</p>
+      </div>
+      <div class="legacy-card">
+        <div class="legacy-icon">🗳️</div>
+        <h4>Democracia en África</h4>
+        <p>La transición sudafricana inspiró procesos democráticos y de paz en todo el continente africano, demostrando que el cambio pacífico es posible.</p>
+      </div>
+      <div class="legacy-card">
+        <div class="legacy-icon">⚖️</div>
+        <h4>Justicia transicional</h4>
+        <p>El modelo de la CVR fue adoptado y adaptado por más de 40 países en conflicto o postconflicto, desde Ruanda hasta Colombia.</p>
+      </div>
+      <div class="legacy-card">
+        <div class="legacy-icon">✊</div>
+        <h4>Movimientos de derechos</h4>
+        <p>La lucha antiapartheid conectó y fortaleció movimientos de derechos civiles en todo el mundo, del movimiento negro en EE.UU. a luchas anticoloniales en Asia y América Latina.</p>
+      </div>
+      <div class="legacy-card">
+        <div class="legacy-icon">🌍</div>
+        <h4>Sanciones como herramienta</h4>
+        <p>El éxito de las sanciones económicas internacionales contra Sudáfrica estableció un precedente sobre el uso de la presión diplomática y económica frente a regímenes opresores.</p>
+      </div>
+      <div class="legacy-card">
+        <div class="legacy-icon">🏫</div>
+        <h4>Educación y memoria</h4>
+        <p>El 27 de abril se celebra en Sudáfrica como Día de la Libertad. Museos, archivos y programas educativos preservan la memoria para que las generaciones futuras no olviden.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CITA FINAL ═══ -->
+<section class="final-bg">
+  <p class="final-quote">
+    "He caminado ese largo camino hacia la libertad y he tratado de no errar al dar los pasos. Pero he descubierto el secreto que tras las colinas de esta hermosa tierra existe aún otro horizonte, y que solo en el momento de llegar a él surge el horizonte siguiente."
+  </p>
+  <div class="final-attr">— Nelson Mandela · El largo camino hacia la libertad, 1994</div>
+</section>
+
+<!-- ═══ FLAG BOTTOM ═══ -->
+<div class="flag-bar-bottom">
+  <span style="background:#007A4D;flex:2"></span>
+  <span style="background:#000;flex:1"></span>
+  <span style="background:#FFB81C;flex:1"></span>
+  <span style="background:#000;flex:1"></span>
+  <span style="background:#DE3831;flex:2"></span>
+  <span style="background:#fff;flex:1"></span>
+  <span style="background:#002395;flex:2"></span>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <p>Página conmemorativa · <strong>Sudáfrica Libre</strong> · 27 de abril de 1994 — Día de la Libertad</p>
+  <p style="margin-top:0.5rem">En memoria de todos los que lucharon, sufrieron y soñaron con una Sudáfrica libre e igual.</p>
+</footer>
+
 </body>
-
 </html>
